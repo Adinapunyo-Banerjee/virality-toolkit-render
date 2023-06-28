@@ -1,0 +1,1014 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" id="the_html">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %}</title>
+
+    <link rel="icon" href="{%static '/logo.svg' %}" type="image/icon type">
+
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/5c2d098959.js" crossorigin="anonymous"></script>
+
+    <!-- Loading Base CSS -->
+    <link rel="stylesheet" href="{%static '/css/base.css' %}">
+
+    <!-- Loading additional CSS -->
+    {% block css %}
+    {% endblock %}
+
+    <!-- Loading additional styles -->
+    <style>
+        {% block style %}
+        {% endblock %}
+    </style>
+
+    <!-- Loading jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+</head>
+
+<body class="bg-slate-300">
+
+    <!-- Navbar -->
+    <div class="navbar bg-base-100">
+        <div class="navbar-start">
+            <div class="dropdown">
+                <label tabindex="0" class="btn btn-ghost lg:hidden">
+                    <i class="fa-solid fa-bars fa-lg"></i>
+                </label>
+                <ul tabindex="0"
+                    class="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-[51]">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'tools' %}">Tools</a></li>
+                    <!-- <li><a>Blog</a></li> -->
+                    <li><a href="{% url 'about' %}">About</a></li>
+
+                    <li onclick="my_modal_1.showModal()"><a>Theme</a></li>
+                    <dialog id="my_modal_1" class="modal">
+                        <form method="dialog" class="modal-box">
+                            <h3 class="font-bold text-lg">Change your Theme</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
+                                <!-- Light Theme -->
+                                <div onclick="changeTheme('light', 'btn btn-ghost normal-case text-xl bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-500 to-cyan-500', 'highlight text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-500 to-cyan-500')"
+                                    class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+                                    data-set-theme="light" data-act-class="!outline-base-content">
+                                    <div data-theme="light"
+                                        class="bg-base-100 text-base-content w-full cursor-pointer font-sans">
+                                        <div class="grid grid-cols-5 grid-rows-3">
+                                            <div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+                                            <div class="bg-base-300 col-start-1 row-start-3"></div>
+                                            <div
+                                                class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+                                                <div class="font-bold">light</div>
+                                                <div class="flex flex-wrap gap-1">
+                                                    <div
+                                                        class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-primary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-secondary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-accent-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-neutral-content text-sm font-bold">A</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Dark Theme -->
+                                <div onclick="changeTheme('dark', 'btn btn-ghost normal-case text-xl bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-500 to-cyan-500', 'highlight text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-500 to-cyan-500')"
+                                    class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+                                    data-set-theme="dark" data-act-class="!outline-base-content">
+                                    <div data-theme="dark"
+                                        class="bg-base-100 text-base-content w-full cursor-pointer font-sans">
+                                        <div class="grid grid-cols-5 grid-rows-3">
+                                            <div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+                                            <div class="bg-base-300 col-start-1 row-start-3"></div>
+                                            <div
+                                                class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+                                                <div class="font-bold">dark</div>
+                                                <div class="flex flex-wrap gap-1">
+                                                    <div
+                                                        class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-primary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-secondary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-accent-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-neutral-content text-sm font-bold">A</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Bumblebee -->
+                                <div onclick="changeTheme('bumblebee', 'btn btn-ghost normal-case text-xl bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-400', 'highlight text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-400')"
+                                    class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+                                    data-set-theme="bumblebee" data-act-class="!outline-base-content">
+                                    <div data-theme="bumblebee"
+                                        class="bg-base-100 text-base-content w-full cursor-pointer font-sans">
+                                        <div class="grid grid-cols-5 grid-rows-3">
+                                            <div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+                                            <div class="bg-base-300 col-start-1 row-start-3"></div>
+                                            <div
+                                                class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+                                                <div class="font-bold">bumblebee</div>
+                                                <div class="flex flex-wrap gap-1">
+                                                    <div
+                                                        class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-primary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-secondary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-accent-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-neutral-content text-sm font-bold">A</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Synthwave -->
+                                <div onclick="changeTheme('synthwave', 'btn btn-ghost normal-case text-xl bg-clip-text text-transparent bg-gradient-to-r from-teal-500 via-pink-400 to-amber-500', 'highlight text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-500 via-pink-400 to-amber-500')"
+                                    class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+                                    data-set-theme="synthwave" data-act-class="!outline-base-content">
+                                    <div data-theme="synthwave"
+                                        class="bg-base-100 text-base-content w-full cursor-pointer font-sans">
+                                        <div class="grid grid-cols-5 grid-rows-3">
+                                            <div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+                                            <div class="bg-base-300 col-start-1 row-start-3"></div>
+                                            <div
+                                                class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+                                                <div class="font-bold">synthwave</div>
+                                                <div class="flex flex-wrap gap-1">
+                                                    <div
+                                                        class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-primary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-secondary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-accent-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-neutral-content text-sm font-bold">A</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Retro -->
+                                <div onclick="changeTheme('retro', 'btn btn-ghost normal-case text-xl bg-clip-text text-transparent bg-gradient-to-r from-teal-600 via-pink-600 to-yellow-600', 'highlight text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-600 via-pink-600 to-yellow-600')"
+                                    class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+                                    data-set-theme="retro" data-act-class="!outline-base-content">
+                                    <div data-theme="retro"
+                                        class="bg-base-100 text-base-content w-full cursor-pointer font-sans">
+                                        <div class="grid grid-cols-5 grid-rows-3">
+                                            <div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+                                            <div class="bg-base-300 col-start-1 row-start-3"></div>
+                                            <div
+                                                class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+                                                <div class="font-bold">retro</div>
+                                                <div class="flex flex-wrap gap-1">
+                                                    <div
+                                                        class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-primary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-secondary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-accent-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-neutral-content text-sm font-bold">A</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Luxury -->
+                                <div onclick="changeTheme('luxury', 'btn btn-ghost normal-case text-xl bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-600 via-yellow-500 to-amber-600', 'highlight text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-600 via-yellow-500 to-amber-600')"
+                                    class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+                                    data-set-theme="luxury" data-act-class="!outline-base-content">
+                                    <div data-theme="luxury"
+                                        class="bg-base-100 text-base-content w-full cursor-pointer font-sans">
+                                        <div class="grid grid-cols-5 grid-rows-3">
+                                            <div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+                                            <div class="bg-base-300 col-start-1 row-start-3"></div>
+                                            <div
+                                                class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+                                                <div class="font-bold">luxury</div>
+                                                <div class="flex flex-wrap gap-1">
+                                                    <div
+                                                        class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-primary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-secondary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-accent-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-neutral-content text-sm font-bold">A</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Autumn -->
+                                <div onclick="changeTheme('autumn', 'btn btn-ghost normal-case text-xl bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-rose-700 to-rose-300', 'highlight text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-rose-700 to-rose-300')"
+                                    class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+                                    data-set-theme="autumn" data-act-class="!outline-base-content">
+                                    <div data-theme="autumn"
+                                        class="bg-base-100 text-base-content w-full cursor-pointer font-sans">
+                                        <div class="grid grid-cols-5 grid-rows-3">
+                                            <div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+                                            <div class="bg-base-300 col-start-1 row-start-3"></div>
+                                            <div
+                                                class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+                                                <div class="font-bold">autumn</div>
+                                                <div class="flex flex-wrap gap-1">
+                                                    <div
+                                                        class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-primary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-secondary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-accent-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-neutral-content text-sm font-bold">A</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Aqua -->
+                                <div onclick="changeTheme('aqua', 'btn btn-ghost normal-case text-xl bg-clip-text text-transparent bg-gradient-to-r from-pink-300 via-cyan-300 to-yellow-200', 'highlight text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-300 via-cyan-300 to-yellow-200')"
+                                    class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+                                    data-set-theme="aqua" data-act-class="!outline-base-content">
+                                    <div data-theme="aqua"
+                                        class="bg-base-100 text-base-content w-full cursor-pointer font-sans">
+                                        <div class="grid grid-cols-5 grid-rows-3">
+                                            <div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+                                            <div class="bg-base-300 col-start-1 row-start-3"></div>
+                                            <div
+                                                class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+                                                <div class="font-bold">aqua</div>
+                                                <div class="flex flex-wrap gap-1">
+                                                    <div
+                                                        class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-primary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-secondary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-accent-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-neutral-content text-sm font-bold">A</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Cyberpunk -->
+                                <div onclick="changeTheme('cyberpunk', 'btn btn-ghost normal-case text-xl bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 via-rose-400 to-fuchsia-600', 'highlight text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 via-rose-400 to-fuchsia-600')"
+                                    class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+                                    data-set-theme="cyberpunk" data-act-class="!outline-base-content">
+                                    <div data-theme="cyberpunk"
+                                        class="bg-base-100 text-base-content w-full cursor-pointer font-sans">
+                                        <div class="grid grid-cols-5 grid-rows-3">
+                                            <div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+                                            <div class="bg-base-300 col-start-1 row-start-3"></div>
+                                            <div
+                                                class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+                                                <div class="font-bold">cyberpunk</div>
+                                                <div class="flex flex-wrap gap-1">
+                                                    <div
+                                                        class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-primary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-secondary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-accent-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-neutral-content text-sm font-bold">A</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Night -->
+                                <div onclick="changeTheme('night', 'btn btn-ghost normal-case text-xl bg-clip-text text-transparent bg-gradient-to-r from-violet-500 via-cyan-400 to-pink-600', 'highlight text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-violet-500 via-cyan-400 to-pink-600')"
+                                    class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+                                    data-set-theme="night" data-act-class="!outline-base-content">
+                                    <div data-theme="night"
+                                        class="bg-base-100 text-base-content w-full cursor-pointer font-sans">
+                                        <div class="grid grid-cols-5 grid-rows-3">
+                                            <div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+                                            <div class="bg-base-300 col-start-1 row-start-3"></div>
+                                            <div
+                                                class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+                                                <div class="font-bold">night</div>
+                                                <div class="flex flex-wrap gap-1">
+                                                    <div
+                                                        class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-primary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-secondary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-accent-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-neutral-content text-sm font-bold">A</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <form method="dialog" class="modal-backdrop">
+                            <button>close</button>
+                        </form>
+                    </dialog>
+
+                    <!-- <li class="text-primary"><a>Premium</a></li> -->
+                </ul>
+            </div>
+            <a href="{% url 'home' %}" id="app_name"
+                class="btn btn-ghost normal-case text-xl bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-500 to-cyan-500">Virality
+                Toolkit <div class="badge badge-accent">Beta</div></a>
+        </div>
+
+        <div class="navbar-end">
+            <div class="hidden lg:flex">
+                <ul class="menu menu-horizontal px-1 text-md">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'tools' %}">Tools</a></li>
+                    <!-- <li><a>Blog</a></li> -->
+                    <li><a href="{% url 'about' %}">About</a></li>
+
+                    <li onclick="my_modal_2.showModal()"><a>Theme</a></li>
+                    <dialog id="my_modal_2" class="modal">
+                        <form method="dialog" class="modal-box">
+                            <h3 class="font-bold text-lg">Change your Theme</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
+                                <!-- Light Theme -->
+                                <div onclick="changeTheme('light', 'btn btn-ghost normal-case text-xl bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-500 to-cyan-500', 'highlight text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-500 to-cyan-500')"
+                                    class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+                                    data-set-theme="light" data-act-class="!outline-base-content">
+                                    <div data-theme="light"
+                                        class="bg-base-100 text-base-content w-full cursor-pointer font-sans">
+                                        <div class="grid grid-cols-5 grid-rows-3">
+                                            <div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+                                            <div class="bg-base-300 col-start-1 row-start-3"></div>
+                                            <div
+                                                class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+                                                <div class="font-bold">light</div>
+                                                <div class="flex flex-wrap gap-1">
+                                                    <div
+                                                        class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-primary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-secondary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-accent-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-neutral-content text-sm font-bold">A</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Dark Theme -->
+                                <div onclick="changeTheme('dark', 'btn btn-ghost normal-case text-xl bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-500 to-cyan-500', 'highlight text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-500 to-cyan-500')"
+                                    class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+                                    data-set-theme="dark" data-act-class="!outline-base-content">
+                                    <div data-theme="dark"
+                                        class="bg-base-100 text-base-content w-full cursor-pointer font-sans">
+                                        <div class="grid grid-cols-5 grid-rows-3">
+                                            <div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+                                            <div class="bg-base-300 col-start-1 row-start-3"></div>
+                                            <div
+                                                class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+                                                <div class="font-bold">dark</div>
+                                                <div class="flex flex-wrap gap-1">
+                                                    <div
+                                                        class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-primary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-secondary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-accent-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-neutral-content text-sm font-bold">A</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Bumblebee -->
+                                <div onclick="changeTheme('bumblebee', 'btn btn-ghost normal-case text-xl bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-400', 'highlight text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-400')"
+                                    class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+                                    data-set-theme="bumblebee" data-act-class="!outline-base-content">
+                                    <div data-theme="bumblebee"
+                                        class="bg-base-100 text-base-content w-full cursor-pointer font-sans">
+                                        <div class="grid grid-cols-5 grid-rows-3">
+                                            <div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+                                            <div class="bg-base-300 col-start-1 row-start-3"></div>
+                                            <div
+                                                class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+                                                <div class="font-bold">bumblebee</div>
+                                                <div class="flex flex-wrap gap-1">
+                                                    <div
+                                                        class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-primary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-secondary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-accent-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-neutral-content text-sm font-bold">A</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Synthwave -->
+                                <div onclick="changeTheme('synthwave', 'btn btn-ghost normal-case text-xl bg-clip-text text-transparent bg-gradient-to-r from-teal-500 via-pink-400 to-amber-500 bg-clip-text text-transparent', 'highlight text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-500 via-pink-400 to-amber-500')"
+                                    class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+                                    data-set-theme="synthwave" data-act-class="!outline-base-content">
+                                    <div data-theme="synthwave"
+                                        class="bg-base-100 text-base-content w-full cursor-pointer font-sans">
+                                        <div class="grid grid-cols-5 grid-rows-3">
+                                            <div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+                                            <div class="bg-base-300 col-start-1 row-start-3"></div>
+                                            <div
+                                                class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+                                                <div class="font-bold">synthwave</div>
+                                                <div class="flex flex-wrap gap-1">
+                                                    <div
+                                                        class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-primary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-secondary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-accent-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-neutral-content text-sm font-bold">A</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Retro -->
+                                <div onclick="changeTheme('retro', 'btn btn-ghost normal-case text-xl bg-clip-text text-transparent bg-gradient-to-r from-teal-600 via-pink-600 to-yellow-600 bg-clip-text text-transparent', 'highlight text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-600 via-pink-600 to-yellow-600')"
+                                    class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+                                    data-set-theme="retro" data-act-class="!outline-base-content">
+                                    <div data-theme="retro"
+                                        class="bg-base-100 text-base-content w-full cursor-pointer font-sans">
+                                        <div class="grid grid-cols-5 grid-rows-3">
+                                            <div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+                                            <div class="bg-base-300 col-start-1 row-start-3"></div>
+                                            <div
+                                                class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+                                                <div class="font-bold">retro</div>
+                                                <div class="flex flex-wrap gap-1">
+                                                    <div
+                                                        class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-primary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-secondary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-accent-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-neutral-content text-sm font-bold">A</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Luxury -->
+                                <div onclick="changeTheme('luxury', 'btn btn-ghost normal-case text-xl bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-600 via-yellow-500 to-amber-600 bg-clip-text text-transparent', 'highlight text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-600 via-yellow-500 to-amber-600')"
+                                    class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+                                    data-set-theme="luxury" data-act-class="!outline-base-content">
+                                    <div data-theme="luxury"
+                                        class="bg-base-100 text-base-content w-full cursor-pointer font-sans">
+                                        <div class="grid grid-cols-5 grid-rows-3">
+                                            <div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+                                            <div class="bg-base-300 col-start-1 row-start-3"></div>
+                                            <div
+                                                class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+                                                <div class="font-bold">luxury</div>
+                                                <div class="flex flex-wrap gap-1">
+                                                    <div
+                                                        class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-primary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-secondary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-accent-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-neutral-content text-sm font-bold">A</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Autumn -->
+                                <div onclick="changeTheme('autumn', 'btn btn-ghost normal-case text-xl bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-rose-700 to-rose-300 bg-clip-text text-transparent', 'highlight text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-rose-700 to-rose-300')"
+                                    class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+                                    data-set-theme="autumn" data-act-class="!outline-base-content">
+                                    <div data-theme="autumn"
+                                        class="bg-base-100 text-base-content w-full cursor-pointer font-sans">
+                                        <div class="grid grid-cols-5 grid-rows-3">
+                                            <div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+                                            <div class="bg-base-300 col-start-1 row-start-3"></div>
+                                            <div
+                                                class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+                                                <div class="font-bold">autumn</div>
+                                                <div class="flex flex-wrap gap-1">
+                                                    <div
+                                                        class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-primary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-secondary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-accent-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-neutral-content text-sm font-bold">A</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Aqua -->
+                                <div onclick="changeTheme('aqua', 'btn btn-ghost normal-case text-xl bg-clip-text text-transparent bg-gradient-to-r from-pink-300 via-cyan-300 to-yellow-200 bg-clip-text text-transparent', 'highlight text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-300 via-cyan-300 to-yellow-200')"
+                                    class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+                                    data-set-theme="aqua" data-act-class="!outline-base-content">
+                                    <div data-theme="aqua"
+                                        class="bg-base-100 text-base-content w-full cursor-pointer font-sans">
+                                        <div class="grid grid-cols-5 grid-rows-3">
+                                            <div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+                                            <div class="bg-base-300 col-start-1 row-start-3"></div>
+                                            <div
+                                                class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+                                                <div class="font-bold">aqua</div>
+                                                <div class="flex flex-wrap gap-1">
+                                                    <div
+                                                        class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-primary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-secondary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-accent-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-neutral-content text-sm font-bold">A</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Cyberpunk -->
+                                <div onclick="changeTheme('cyberpunk', 'btn btn-ghost normal-case text-xl bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 via-rose-400 to-fuchsia-600 bg-clip-text text-transparent', 'highlight text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 via-rose-400 to-fuchsia-600')"
+                                    class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+                                    data-set-theme="cyberpunk" data-act-class="!outline-base-content">
+                                    <div data-theme="cyberpunk"
+                                        class="bg-base-100 text-base-content w-full cursor-pointer font-sans">
+                                        <div class="grid grid-cols-5 grid-rows-3">
+                                            <div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+                                            <div class="bg-base-300 col-start-1 row-start-3"></div>
+                                            <div
+                                                class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+                                                <div class="font-bold">cyberpunk</div>
+                                                <div class="flex flex-wrap gap-1">
+                                                    <div
+                                                        class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-primary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-secondary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-accent-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-neutral-content text-sm font-bold">A</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Night -->
+                                <div onclick="changeTheme('night', 'btn btn-ghost normal-case text-xl bg-clip-text text-transparent bg-gradient-to-r from-violet-500 via-cyan-400 to-pink-600 bg-clip-text text-transparent', 'highlight text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-violet-500 via-cyan-400 to-pink-600')"
+                                    class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+                                    data-set-theme="night" data-act-class="!outline-base-content">
+                                    <div data-theme="night"
+                                        class="bg-base-100 text-base-content w-full cursor-pointer font-sans">
+                                        <div class="grid grid-cols-5 grid-rows-3">
+                                            <div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+                                            <div class="bg-base-300 col-start-1 row-start-3"></div>
+                                            <div
+                                                class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+                                                <div class="font-bold">night</div>
+                                                <div class="flex flex-wrap gap-1">
+                                                    <div
+                                                        class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-primary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-secondary-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-accent-content text-sm font-bold">A</div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+                                                        <div class="text-neutral-content text-sm font-bold">A</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <form method="dialog" class="modal-backdrop">
+                            <button>close</button>
+                        </form>
+                    </dialog>
+
+                    <!-- <li class="text-primary"><a>Premium</a></li> -->
+                </ul>
+            </div>
+
+            {% if user.is_authenticated %}
+            <!-- If logged in -->
+            <div class="dropdown dropdown-end z-[51]">
+                <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+                    <div class="indicator">
+                        <span class="indicator-item badge bg-secondary badge-secondary"></span>
+                        <!--This is the indicator -->
+                        <div class="w-10 rounded-full">
+                            <i class="text-[2.5rem] fa-regular fa-circle-user"></i>
+                        </div>
+                    </div>
+                </label>
+                <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                    <li><a>Hello {% if user.first_name == ""%}there!{% else %}{{ user.first_name }}!{% endif %}</a></li>
+                    <li>
+                        <div class="stats shadow">
+                            <div class="stat">
+                                <div class="stat-title">Token Balance</div>
+                                <div class="stat-value" id="token_balance">{{ user.tokenBalance }}</div>
+                                <div class="stat-desc">Out of 200</div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- <li>
+                        <a class="justify-between">
+                            Profile
+                            <span class="badge badge-secondary">New</span>
+                        </a>
+                    </li> -->
+                    <!-- <li><a>Settings</a></li> -->
+                    <li><a href="/accounts/logout">Logout</a></li>
+                </ul>
+            </div>
+            {% else %}
+            <!-- Not logged in -->
+            <a href="/accounts/login" class="btn btn-secondary"><i class="fa-regular fa-user"></i>Login</a>
+            {% endif %}
+        </div>
+    </div>
+
+    {% for message in messages %}
+
+    {% if 'success' in message.tags %}
+    <!-- Success Message -->
+    <div
+        class="close_on_click_success alert alert-success absolute text-center mt-5 mx-auto max-w-max z-50 left-0 right-0 text-sm content-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>{{ message }}</span>
+        <i onclick="messageDismiss('close_on_click_success')" class="fa-solid fa-xmark"></i>
+    </div>
+
+    {% elif 'warning' in message.tags %}
+    <!-- Warning Message -->
+    <div
+        class="close_on_click_warn alert alert-warning absolute text-center mt-5 mx-auto max-w-max z-50 left-0 right-0 text-sm content-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg></svg>
+        <span>{{ message }}</span>
+        <i onclick="messageDismiss('close_on_click_warn')" class="fa-solid fa-xmark"></i>
+    </div>
+
+    {% elif 'error' in message.tags %}
+    <!-- Error Message -->
+    <div
+        class="close_on_click_error alert alert-error absolute text-center mt-5 mx-auto max-w-max z-50 left-0 right-0 text-sm content-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>{{ message }}</span>
+        <i onclick="messageDismiss('close_on_click_error')" class="fa-solid fa-xmark"></i>
+    </div>
+    {% endif %}
+
+    {% endfor %}
+
+    <!-- Form Error Message -->
+    {% for key, value in form.errors.items %}
+    <div
+        class="close_on_click_error alert alert-error absolute text-center mt-5 mx-auto max-w-max z-50 left-0 right-0 text-sm content-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>{% if key != '__all__' %}{{ key }}{% endif %}{{ value }}</span>
+        <i onclick="messageDismiss('close_on_click_error')" class="fa-solid fa-xmark"></i>
+    </div>
+    {% endfor %}
+
+    <div id="cookie_notice"
+        class="hidden close_on_click_cookies drop-shadow-xl alert mt-5 mx-auto max-w-max left-0 right-0 text-sm content-center z-[52]">
+        <i class="fa-solid fa-circle-info"></i>
+        <span>This site uses cookies for better experience!</span>
+        <div>
+            <button class="btn btn-sm"
+                onclick="setTimeout(function(){var ww = window.open(window.location, '_self'); ww.close(); }, 500);">Deny</button>
+            <button class="btn btn-sm btn-primary"
+                onclick="messageDismiss('close_on_click_cookies');cookieAccepted()">Accept</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    {% block content %}
+    {% endblock %}
+
+    <!-- Footer -->
+    <footer class="footer footer-center p-10 bg-primary text-primary-content">
+        <div>
+            <!-- <svg width="50" height="50" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
+                clip-rule="evenodd" class="inline-block fill-current">
+                <path
+                    d="M22.672 15.226l-2.432.811.841 2.515c.33 1.019-.209 2.127-1.23 2.456-1.15.325-2.148-.321-2.463-1.226l-.84-2.518-5.013 1.677.84 2.517c.391 1.203-.434 2.542-1.831 2.542-.88 0-1.601-.564-1.86-1.314l-.842-2.516-2.431.809c-1.135.328-2.145-.317-2.463-1.229-.329-1.018.211-2.127 1.231-2.456l2.432-.809-1.621-4.823-2.432.808c-1.355.384-2.558-.59-2.558-1.839 0-.817.509-1.582 1.327-1.846l2.433-.809-.842-2.515c-.33-1.02.211-2.129 1.232-2.458 1.02-.329 2.13.209 2.461 1.229l.842 2.515 5.011-1.677-.839-2.517c-.403-1.238.484-2.553 1.843-2.553.819 0 1.585.509 1.85 1.326l.841 2.517 2.431-.81c1.02-.33 2.131.211 2.461 1.229.332 1.018-.21 2.126-1.23 2.456l-2.433.809 1.622 4.823 2.433-.809c1.242-.401 2.557.484 2.557 1.838 0 .819-.51 1.583-1.328 1.847m-8.992-6.428l-5.01 1.675 1.619 4.828 5.011-1.674-1.62-4.829z">
+                </path>
+            </svg> -->
+            <img width="40px" src="{% static '/logo.svg' %}" alt="">
+            <p class="font-bold">
+                Virality Toolkit <br />
+            </p>
+            <p>Copyright © 2023 - All right reserved</p>
+        </div>
+        <div>
+            <div class="grid grid-flow-col gap-4 text-3xl">
+                <a href="https://www.instagram.com/the_intern_official/" target="_blank"><i
+                    class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.youtube.com/channel/UCg88GSGyf-66Ma_X9tDYwLg" target="_blank"><i
+                        class="fa-brands fa-youtube"></i></a>
+                <a href="https://www.linkedin.com/in/adinapunyo/" target="_blank"><i
+                            class="fa-brands fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+{% block js %}
+{% endblock %}
+
+<script>
+    // Make 'cookies_accepted' storage
+    if (localStorage.getItem("cookies_accepted") == null) {
+        localStorage.setItem("cookies_accepted", "false");
+        console.log("Item Set...")
+    }
+
+    // Cookie Notice
+    if (localStorage.getItem("cookies_accepted") == "false") {
+        cookie_notice = document.getElementById("cookie_notice");
+        cookie_notice.setAttribute("class", "absolute close_on_click_cookies drop-shadow-xl alert mt-5 mx-auto max-w-max left-0 right-0 text-sm content-center z-[52]");
+        console.log("Cookies not yet accepted.");
+    }
+
+    // If cookie accepted
+    function cookieAccepted() {
+        localStorage.setItem("cookies_accepted", "true");
+        console.log("Accepted!");
+    }
+
+    function messageDismiss(class_name_to_dismiss) {
+        let btn = document.getElementsByClassName(class_name_to_dismiss);
+        for (let i = 0; i < btn.length; i++) {
+            btn[i].style.top = "0";
+            btn[i].style.display = "none"
+        }
+    }
+</script>
+
+
+<script>
+    if (localStorage.getItem("theme_set") == null) {
+        localStorage.setItem("theme_set", "dark");
+    }
+    else {
+        let theme_set = localStorage.getItem("theme_set");
+        console.log(theme_set);
+        let name_common_styles = "btn btn-ghost normal-case text-xl bg-clip-text text-transparent bg-gradient-to-r bg-clip-text text-transparent";
+        let highlight_common_styles = "highlight text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r";
+
+        // Gradients here!
+        const theme_gradients = {
+            "light": "from-fuchsia-500 to-cyan-500",
+            "dark": "from-fuchsia-500 to-cyan-500",
+            "bumblebee": "from-yellow-400 via-amber-500 to-yellow-400",
+            "synthwave": "from-teal-500 via-pink-400 to-amber-500",
+            "retro": "from-teal-600 via-pink-600 to-yellow-600",
+            "luxury": "from-fuchsia-600 via-yellow-500 to-amber-600",
+            "autumn": "from-red-400 via-rose-700 to-rose-300",
+            "aqua": "from-pink-300 via-cyan-300 to-yellow-200",
+            "cyberpunk": "from-cyan-500 via-rose-400 to-fuchsia-600",
+            "night": "from-violet-500 via-cyan-400 to-pink-600"
+        }
+
+        // Now change the theme
+        changeTheme(theme_set, name_common_styles + " " + theme_gradients[theme_set], highlight_common_styles + " " + theme_gradients[theme_set]);
+    }
+
+    function changeTheme(new_theme, gradient_theme, highlight_gradient_theme) {
+        // Change DaisyUI theme
+        let html_ele = document.getElementById("the_html");
+        html_ele.setAttribute("data-theme", new_theme);
+
+        // Store new theme name in local storage
+        localStorage.setItem("theme_set", new_theme);
+
+        // Get App name and highlights
+        let app_name = document.getElementById("app_name");
+        let highlights = document.getElementsByClassName("highlight");
+
+        // Change all highlights and App Name
+        for (let i = 0; i < highlights.length; i++) {
+            highlights[i].setAttribute("class", highlight_gradient_theme);
+        }
+        app_name.setAttribute("class", gradient_theme);
+        // Also change the gradient colours of highlighted text and Name here!
+    }
+</script>
+
+</html>

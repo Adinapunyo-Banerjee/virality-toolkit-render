@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %} Virality Toolkit {% endblock %}
+{% block css %}{% endblock %}
+
+{% block content %}
+<div class="hero min-h-screen bg-base-200">
+    <div class="hero-content flex-col lg:flex-row-reverse gap-10">
+        <img src="{% static '/images/yt4.jfif' %}"
+            class="max-w-sm rounded-lg shadow-2xl" />
+        <div>
+            <h1
+                class="highlight text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-500 to-cyan-500">
+                Rate the thumbnail</h1>
+            <h1 class="text-5xl font-bold brightness-150 contrast-150">before you upload</h1>
+            <h1 class="text-5xl font-bold brightness-150 contrast-150">using an AI!</h1>
+            <p class="py-6">Virality Toolkit rates your YouTube thumbnail for engagement and views! <br> For
+                creators, by a creator!</p>
+            <a href="{% url 'tools' %}" class="btn btn-primary"><i class="fa-solid fa-rocket"></i>Get Started!</a>
+        </div>
+    </div>
+</div>
+
+<div class="hero min-h-screen"
+    style="background-image: url({% static '/images/yt6.jfif' %});">
+    <div class="hero-overlay bg-opacity-60"></div>
+    <div class="hero-content text-center text-neutral-content">
+        <div class="max-w-md">
+            <h1 class="mb-5 text-5xl font-bold brightness-150 contrast-150">Trained on over 25 thousand thumbnails.
+            </h1>
+            <p class="mb-5">The first of many tools to come. Welcome to the first release of Virality Toolkit!
+                Expectations are high, experimentations are on...</p>
+            <a href="{% url 'tools' %}" class="btn btn-secondary"><i class="fa-regular fa-circle-play"></i>Take a tour</a>
+        </div>
+    </div>
+</div>
+
+<div class="hero min-h-screen bg-base-200">
+    <div class="hero-content flex-col lg:flex-row gap-8">
+        <img src="{% static '/images/yt5.jfif' %}"
+            class="max-w-sm rounded-lg shadow-2xl" />
+        <div>
+            <h1 class="text-5xl font-bold brightness-150 contrast-150">CTR is the king!</h1>
+            <p class="pt-3 pb-5">In this new era of youtube, the Click Through Rate makes the difference between
+                Virality and Oblivion. Let us help you get the views you need...</p>
+            <a href="{% url 'tools' %}" class="btn btn-primary"><i class="fa-solid fa-rocket"></i>Get Started!</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,209 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %} About me {% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{%static '/css/about.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Main Content -->
+
+<!-- Response Error Message -->
+<div id="response_error"
+    class="close_on_click_error alert alert-error absolute text-center mt-5 mx-auto max-w-max z-50 left-0 right-0 text-sm content-center">
+    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    <span id="response_error_msg">Hello!</span>
+    <i onclick="messageDismiss('close_on_click_error')" class="fa-solid fa-xmark"></i>
+</div>
+
+<!-- Response Success Message -->
+<div id="response_success"
+    class="close_on_click_success alert alert-success absolute text-center mt-5 mx-auto max-w-max z-50 left-0 right-0 text-sm content-center">
+    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    <span id="response_success_msg">Hello!</span>
+    <i onclick="messageDismiss('close_on_click_success')" class="fa-solid fa-xmark"></i>
+</div>
+
+<!-- Response Warning Message -->
+<div id="response_warning"
+    class="close_on_click_warn alert alert-warning absolute text-center mt-5 mx-auto max-w-max z-50 left-0 right-0 text-sm content-center">
+    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+    </svg></svg>
+    <span id="response_warning_msg">Hello!</span>
+    <i onclick="messageDismiss('close_on_click_warn')" class="fa-solid fa-xmark"></i>
+</div>
+
+<script>
+    // Hide AJAX response messages 
+    $("#response_error").hide();
+    $("#response_success").hide();
+    $("#response_warning").hide();
+</script>
+
+<div class="hero min-h-screen bg-base-200">
+    <div class="hero-content flex-col lg:flex-row-reverse gap-10">
+        <img id="self_img" src="{%static '/images/self_pic_edit.png' %}"
+            class="max-w-sm rounded-lg" style="filter: brightness(0.75); filter: contrast(1.2); opacity: 0.85;"/>
+        <div>
+            <h1 class="text-5xl font-bold brightness-150 contrast-150">Hello There!</h1>
+            <h1 class="text-5xl font-bold brightness-150 contrast-150">My name is</h1>
+            <h1 class="highlight text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-500 to-cyan-500">
+                Adinapunyo</h1>
+            <p class="py-6">Hi, I am a self taught Web Developer, a Deep Learning enthusiast and the creator of
+                Virality Toolkit. My interests lie in backend web development, contributing to open source, training
+                AI models for industry level applications and data structures and algorithms. When I am not working,
+                I am probably listening to <u class="tooltip" data-tip="'Darkside' is my favourite">Alan Walker</u>
+                or <u class="tooltip" data-tip="Who doesn't like 'Blank Space'?">Taylor Swift</u>. I have a small
+                YouTube channel which I like to pamper as a side hustle. <br>Similar interests? Why not hire me? 🤔
+            </p>
+            <button class="btn btn-primary"><i class="fa-solid fa-rocket"></i>Hire me!</button>
+        </div>
+    </div>
+</div>
+
+<div class="hero min-h-screen bg-base-200"
+    style="background-image: url({% static '/images/yt4.jfif' %});">
+    <div class="hero-overlay bg-opacity-60"></div>
+    <div class="hero-content flex-col lg:flex-row-reverse">
+        <div class="text-center lg:text-left">
+            <h1 class="text-5xl font-bold text-primary-focus brightness-150 contrast-150">Leave a review!</h1>
+            <p class="py-6 text-primary brightness-150 contrast-150">I am always improving myself. So is the
+                app! <br> Leave a review to help me optimize!</p>
+        </div>
+        <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+            <div class="card-body">
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">E-mail</span>
+                    </label>
+                    <input name="email" id="id_email" type="email" placeholder="E-mail" class="input input-bordered" value=" {% if user.is_authenticated %} {{ user.email }} {% endif %}" {% if user.is_authenticated %}disabled{% endif %} />
+                </div>
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">Title</span>
+                    </label>
+                    <input name="title" id="id_title" type="text" placeholder="What do you want to talk about?" class="input input-bordered" />
+                </div>
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">Describe the issue/review</span>
+                    </label>
+                    <textarea name="review" id="id_review" type="text" placeholder="" class="textarea textarea-bordered"></textarea>
+                </div>
+                <div class="form-control mt-6">
+                    <button id="id_submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="hero min-h-screen bg-base-200">
+    <div class="hero-content flex-col lg:flex-row gap-8">
+        <img src="https://avatars.githubusercontent.com/u/110435416?s=400&u=e5b32eaa80f2865628cd437767cc9a615542d864&v=4"
+            class="max-w-sm rounded-lg shadow-2xl mask mask-circle" style="opacity: 0.85;" />
+        <div>
+            <h1 class="text-5xl font-bold brightness-150 contrast-150">Find me everywhere!</h1>
+            <p class="pt-3 pb-5 text-3xl text-primary">
+                <a href="https://www.facebook.com/adinapunyo.banerjee" target="_blank"><i
+                        class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.instagram.com/the_intern_official/" target="_blank"><i
+                        class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/adinapunyo/" target="_blank"><i
+                        class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/Adinapunyo-Banerjee" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.youtube.com/channel/UCg88GSGyf-66Ma_X9tDYwLg" target="_blank"><i
+                        class="fa-brands fa-youtube"></i></a>
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script>
+    $("document").ready(function() {
+        $("#self_img").hide().fadeIn(500);
+    })
+</script>
+
+<script>
+    $(document).ready(() => {
+        $("#id_submit").on('click', () => {
+            var email = document.getElementById("id_email").value;
+            var title = document.getElementById("id_title").value;
+            var review = document.getElementById("id_review").value;
+
+            if(email=="")
+            {
+                alert("You must enter your E-mail");
+                return false;
+            }
+            if(title=="")
+            {
+                alert("A title is necessary");
+                return false;
+            }
+
+            console.log(email);
+            console.log(title);
+            console.log(review);
+
+            var fd = new FormData();
+            fd.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+            fd.append('title', title);
+            fd.append('email', email);
+            fd.append('review', review);
+
+            $.ajax({
+                type: 'POST',
+                url: '',
+                enctype: 'multipart/form-data',
+                data: fd,
+                success: function (response) {
+                    // Show messages if any
+                        for (i = 0; i < response['messages'].length; i++)
+                        {
+                            var msg = response['messages'][i];
+                            if (msg['error'])
+                            {
+                                $("#response_error_msg").text(msg['error']);
+                                $("#response_error").show();
+                                // console.log('Error message recieved: ' + msg['error']);
+                            }
+                            else if (msg['success'])
+                            {
+                                $("#response_success_msg").text(msg['success']);
+                                $("#response_success").show();
+                                // console.log('Success message recieved: ' + msg['success']);
+                            }
+                            else if (msg['warning'])
+                            {
+                                $("#response_warning_msg").text(msg['warning']);
+                                $("#response_warning").show();
+                                // console.log('Warning message recieved: ' + msg['warning']);
+                            }
+                        }
+                },
+                error: function () {
+                    $("#response_error_msg").text("Your review could not be submitted 😩");
+                    $("#response_error").show();
+                },
+                cache: false,
+                contentType: false,
+                processData: false,
+            });
+        })
+    })
+</script>
+{% endblock %}

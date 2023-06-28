@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %} Prediction Result {% endblock %}
+{% block css %}<link rel="stylesheet" href="{%static '/css/results.css' %}">{% endblock %}
+
+{% block bg %}{%static '/images/yt3.jpg' %}{% endblock %}
+
+
+{% block content %}
+        <div class="flex flex-col gap-[20vh]">
+            <div class="rounded-2xl top-0 flex flex-col max-sm:max-md:px-2 py-5 justify-between h-full w-full bg-cyan-700 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10 items-center shadow-cyan-300/20 shadow-[0px_0px_10px_5px_#5a67d8]">
+                <div class="flex flex-col">
+                    <div class="text-3xl text-center mb-5">
+                        Prediction Result - Proteus AI
+                    </div>
+                    <div class="flex items-center mx-7 max-sm:max-md:flex-col">
+                        <img src="http://127.0.0.1:8000/tools{{ thumb_url }}" class="px-2 py-2 w-1/2 min-h-[200px] border-2 text-center border-dashed" alt="" srcset="">
+                        <div class="w-1/2 text-left text-xl flex flex-col items-center">
+                            <div class="pb-3 w-2/3">
+                                {% for item in input_data %}
+                                    <div>{{ item.0 }} {{ item.1 }}</div>
+                                {% endfor %}
+                                <!-- <div>Category: <strong>Infotainment</strong></div>
+                                <div>Video release: 12/12/12</div>
+                                <div>Channel publish: 12/12/12</div>
+                                <div>Subscriber Count: 200</div>
+                                <div>Total Videos: 300</div>
+                                <div>Total Views: 400</div> -->
+                            </div>
+                            <div class="border-t-[1px] w-2/3 pt-3">
+                                {% for item in output_data %}
+                                    <div>{{ item.0 }} <strong>{{ item.1 }}</strong></div>
+                                {% endfor %}
+
+                                <!-- <div>Likes - <strong>1000</strong></div>
+                                <div>Views - <strong>20000</strong></div> -->
+                                <div class="mt-4">
+                                    <a href="/tools/quick_predict/" class="border-0 px-2 py-2 rounded-md bg-opacity-80 border-opacity-80 border-green-400 bg-green-400 shadow-md shadow-green-400/50 duration-150 hover:shadow-xl hover:shadow-green-400/50 active:bg-opacity-100" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;"><i class="fa-solid fa-rocket"></i> Predict again</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %} Virality Tools {% endblock %}
+{% block css %}<link rel="stylesheet" href="{%static '/css/tools.css' %}">{% endblock %}
+
+{% block style %}
+
+{% endblock %}
+{% block content %}
+
+<div class="text-sm breadcrumbs px-10 bg-base-200 text-base-content">
+    <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'tools' %}">Tools</a></li>
+    </ul>
+</div>
+
+<div class="hero"
+    style="background-image: url({% static '/images/yt6.jfif' %});">
+    <div class="hero-overlay bg-opacity-60"></div>
+    <div class="hero-content text-center text-neutral-content h-[40vh]">
+        <div class="max-w-md">
+            <h1 class="mb-5 text-5xl font-bold brightness-150 contrast-150">Virality Tools</h1>
+            <p class="mb-5">Rate and improve your YouTube video's performance using these tools:</p>
+        </div>
+    </div>
+</div>
+
+<!-- Main div to hold all cards -->
+<div class="bg-base-200">
+
+    <!-- One div for 3 cards -->
+    <div id="to_change_flex" class="px-10 py-10 gap-5 flex">
+        <!-- <div class="card md:w-1/3 bg-primary text-primary-content shadow-2xl">
+            <div class="card-body">
+                <h2 class="card-title">Enhanced Quick Predict <div class="badge badge-neutral">NEW</div>
+                </h2>
+
+                <p>Quick Predict, but enhanced version of it.</p>
+
+                <div class="card-actions justify-start">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </div>
+
+                <div class="card-actions justify-start">
+                    <div>Token Cost: 2</div>
+                </div>
+
+                <div class="card-actions justify-end">
+                    <a href="{% url 'quick_predict' %}" class="btn btn-secondary w-1/2">Use</a>
+                </div>
+            </div>
+        </div> -->
+        <div class="card md:w-1/3 bg-primary text-primary-content shadow-2xl">
+            <div class="card-body">
+                <h2 class="card-title">Quick Predict <div class="badge badge-accent">Legacy</div></h2>
+                <p>Quickly predict the popularity of your thumbnail today.</p>
+
+                <div class="card-actions justify-start">
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </div>
+
+                <div class="card-actions justify-start">
+                    <div>Token Cost: 1</div>
+                </div>
+
+                <div class="card-actions justify-end">
+                    <a href="{% url 'quick_predict' %}" class="btn btn-secondary w-1/2">Use</a>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="card md:w-1/3 bg-primary text-primary-content shadow-2xl">
+            <div class="card-body">
+                <h2 class="card-title">10 day quick predict</h2>
+                <p>Predict popularity of your thumbnail over a range of 10 days.</p>
+
+                <div class="card-actions justify-start">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </div>
+
+                <div class="card-actions justify-start">
+                    <div>Token Cost: 6</div>
+                </div>
+
+                <div class="card-actions justify-end">
+                    <a href="{% url 'quick_predict' %}" class="btn btn-secondary w-1/2">Use</a>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</div>
+
+<style>
+    @media only screen and (max-width: 600px)
+    {
+        #to_change_flex {
+            flex-direction: column;
+        }
+    }
+</style>
+
+{% endblock %}
+

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% load i18n %}
+{% load account socialaccount %}
+{% get_providers as socialaccount_providers %}
+{% load static %}
+
+{% block content %}
+
+{% block css %}
+<link rel="stylesheet" href="{%static '/css/login.css' %}">
+{% endblock %}
+
+<div class="hero min-h-screen bg-base-200">
+  <div class="hero-content flex-col lg:flex-row-reverse">
+      <div class="text-center lg:text-left">
+          <h1 class="text-5xl font-bold">Login now!</h1>
+          <p class="py-6">You make great videos! Don't let people scroll past them.</p>
+      </div>
+      <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <form class="card-body" method="post" action="">
+            {% csrf_token %}
+            <div class="form-control">
+                <label class="label">
+                      <span class="label-text">Email</span>
+                </label>
+                <input name="login" id="id_login" type="text" autocomplete="email" placeholder="email" class="input input-bordered" />
+            </div>
+            <div class="form-control">
+                <label class="label">
+                    <span class="label-text">Password</span>
+                </label>
+                <input name="password" autocomplete="current-password" id="id_password" type="password" placeholder="password" class="input input-bordered"/>
+                <label class="label">
+                    <a href="{% url 'account_reset_password' %}" class="label-text-alt link link-hover">Forgot password?</a>
+                </label>
+            </div>
+            <div class="form-control">
+                  <label class="label cursor-pointer">
+                      <span class="label-text">Remember me</span> 
+                      <input name="remember" id="id_remember" type="checkbox" checked class="checkbox" />
+                  </label>
+            </div>
+            <div class="form-control mt-2 flex lg:flex-row gap-2 mr-2">
+                  <button type="submit" class="btn btn-secondary lg:w-1/2"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</button>
+                  <a href="{{ signup_url }}" class="btn btn-primary lg:w-1/2"><i class="fa-solid fa-user-plus"></i> Signup</a>
+            </div>
+            <div>
+                  <a href="{% provider_login_url 'google' %}" class="btn btn-accent w-full"><i class="fa-brands fa-google"></i> Login with Google</a>
+            </div>
+          </form>
+      </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% load i18n %}
+{% load account socialaccount %}
+{% get_providers as socialaccount_providers %}
+{% load static %}
+
+{% block content %}
+
+{% block css %}
+<link rel="stylesheet" href="{%static '/css/email_confirm.css' %}">
+{% endblock %}
+
+<div class="hero min-h-screen bg-base-200">
+  <div class="hero-content text-center">
+      <div class="max-w-md">
+          <h1 class="text-5xl font-bold">Verify your Email!</h1>
+          <p class="py-6">{% blocktrans %}You need to have a verified e-mail to view this page!{% endblocktrans %}</p>
+          <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+      </div>
+  </div>
+</div>
+{% endblock %}

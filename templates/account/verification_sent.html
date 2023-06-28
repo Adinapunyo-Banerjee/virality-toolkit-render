@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Verify your Email{% endblock %}
+{% load i18n %}
+{% load account socialaccount %}
+{% get_providers as socialaccount_providers %}
+{% load static %}
+
+{% block content %}
+
+{% block css %}
+<link rel="stylesheet" href="{%static '/css/email_confirm.css' %}">
+{% endblock %}
+
+<div class="hero min-h-screen bg-base-200">
+  <div class="hero-content text-center">
+      <div class="max-w-md">
+          <h1 class="text-5xl font-bold">Verify your email address</h1>
+          <p class="py-6">{% blocktrans %}We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. If you do not see the verification e-mail in your main inbox, check your <b>spam</b> folder.{% endblocktrans %}</p>
+          <a href="{% url 'home' %}" class="btn btn-primary">Home</a>
+      </div>
+  </div>
+</div>
+
+{% endblock %}

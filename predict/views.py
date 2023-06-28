@@ -19,8 +19,8 @@ DAY_CHANGE = 1
 
 # Predictions here
 
-QP_MODEL_DIR = '../Predictions/'
-QP_SCALAR_DIR = '../Predictions/Model1/complements/'
+QP_MODEL_DIR = 'MODELS/'
+QP_SCALAR_DIR = 'MODELS/Model1/complements/'
 QP_IMG_DIR = 'media/prediction_model1/'
 
 model = tf.keras.models.load_model(QP_MODEL_DIR + 'final_model.h5')

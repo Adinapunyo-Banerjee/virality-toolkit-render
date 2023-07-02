@@ -8,6 +8,8 @@ from django.http import JsonResponse
 import os
 import pickle
 import numpy as np
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"   # Stops GPU usage
+
 import tensorflow as tf
 from PIL import Image
 from datetime import datetime, timezone, timedelta

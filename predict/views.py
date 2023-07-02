@@ -42,7 +42,10 @@ def quick_predict_script(stats, img_url):
     input_stat = np.expand_dims(stats, axis=0)
     input_stat = stat_scaler.transform(input_stat)
 
-    ans = model.predict([img_to_predict, input_stat])
+    try:
+        ans = model.predict([img_to_predict, input_stat])
+    except:
+        return False
     view = view_scaler.inverse_transform(ans[0])
     like = like_scaler.inverse_transform(ans[1])
     return [view, like]
@@ -119,9 +122,38 @@ def quick_multi_predict_script(input_stat, img_url):
 
 QUICK_PREDICT_COST = 1
 CATEGORY_CHOICES = {
-    1 : 'Gaming',
-    2 : 'Development',
-    3 : 'Cars'
+    1 : 'Film and Animation',
+    2 : 'Autos and Vehicles',
+    10 : 'Music',
+    15 : 'Pets and Animals',
+    17 : 'Sports',
+    18 : 'Short Movies',
+    19 : 'Travel and Events',
+    20 : 'Gaming',
+    21 : 'Video Blogging',
+    22 : 'People and Blogs',
+    23 : 'Comedy',
+    24 : 'Entertainment',
+    25 : 'News and Politics',
+    26 : 'Howto and Style',
+    27 : 'Education',
+    28 : 'Science and Technology',
+    29 : 'Nonprofits and Activism',
+    30 : 'Movies',
+    31 : 'Anime/Animation',
+    32 : 'Action/Adventure',
+    33 : 'Classics',
+    34 : 'Comedy',
+    35 : 'Documentary',
+    36 : 'Drama',
+    37 : 'Family',
+    38 : 'Foreign',
+    39 : 'Horror',
+    40 : 'Sci-Fi/Fantasy',
+    41 : 'Thriller',
+    42 : 'Shorts',
+    43 : 'Shows',
+    44 : 'Trailer'
 }
 
 def tools(request):
@@ -279,7 +311,7 @@ def quick_predict(request):
             else:
                 prediction_results = {
                     'messages' : [
-                        {'error' : 'Your image cannot be processed! It might be corrupted.'}
+                        {'error' : 'Your image cannot be processed! It might be corrupted or of an invalid type'}
                     ],
                     'tokens' : request.user.tokenBalance
                 }

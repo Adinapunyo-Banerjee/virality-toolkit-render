@@ -89,10 +89,39 @@
         <div class="">
             <select name="category" required id="id_category" class="select select-accent w-full max-w-xs">
                 <option value="" selected="">Select category</option>
-                <option value="1">Gaming</option>
-                <option value="2">Development</option>
-                <option value="3">Cars</option>
+                <option value="1">Film and Animation</option>
+                <option value="2">Autos and Vehicles</option>
+                <option value="10">Music</option>
+                <option value="15">Pets and Animals</option>
+                <option value="17">Sports</option>
+                <option value="18">Short Movies</option>
+                <option value="19">Travel and Events</option>
+                <option value="20">Gaming</option>
+                <option value="21">Video Blogging</option>
+                <option value="22">People and Blogs</option>
+                <option value="23">Comedy</option>
+                <option value="24">Entertainment</option>
+                <option value="25">News and Politics</option>
+                <option value="26">Howto and Style</option>
+                <option value="27">Education</option>
+                <option value="28">Science and Technology</option>
+                <option value="29">Nonprofits and Activism</option>
+                <option value="30">Movies</option>
+                <option value="31">Anime/Animation</option>
+                <option value="32">Action/Adventure</option>
+                <option value="33">Classics</option>
+                <option value="35">Documentary</option>
+                <option value="36">Drama</option>
+                <option value="37">Family</option>
+                <option value="38">Foreign</option>
+                <option value="39">Horror</option>
+                <option value="40">Sci-Fi/Fantasy</option>
+                <option value="41">Thriller</option>
+                <option value="42">Shorts</option>
+                <option value="43">Shows</option>
+                <option value="44">Trailer</option>
             </select>
+            
             <div class="pl-1 inline-block tooltip"
                 data-tip="Every YouTube video has a specific category be it Gaming or Entertainment">
                 <i class="fa-regular fa-circle-question"></i>
@@ -376,6 +405,23 @@
         return true;
     }
 
+    function checkDateDistance(chann_date, vid_date) {
+        var channel = document.getElementById(chann_date).value;
+        var video = document.getElementById(vid_date).value;
+
+        if (channel == "" || video == "") return false;
+
+        var channel_date = new Date(channel);
+        var video_date = new Date(video);
+
+        if (video_date < channel_date) {
+            alert("Channel date should be before Video publish date");
+            return false;
+        }
+
+        return true;
+    }
+
     function checkCategory() {
         var input_cat = document.getElementById("id_category").value;
         if (input_cat == "") {
@@ -392,7 +438,8 @@
             var cat_check = checkCategory();
             var chann_check = checkDate("id_channel_pub_time");
             var vid_check = checkDate("id_video_pub_time");
-            if (file_size_check && cat_check && chann_check && vid_check) {
+            var date_dist = checkDateDistance("id_channel_pub_time", "id_video_pub_time");
+            if (file_size_check && cat_check && chann_check && vid_check && date_dist) {
                 const category = document.getElementById("id_category").value;
                 const subs = document.getElementById("id_subscribers").value;
                 const cpt = document.getElementById("id_channel_pub_time").value;
